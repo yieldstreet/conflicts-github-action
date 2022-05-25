@@ -34,7 +34,7 @@ export async function run(): Promise<void> {
     }
 
     await runOnAll(octokit, github.context, conflictLabel, waitMs, maxRetries, detectMergeChanges)
-  } catch (error) {
+  } catch (error: any) {
     core.setFailed(error.message)
   }
 }
