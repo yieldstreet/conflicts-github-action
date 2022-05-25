@@ -160,7 +160,7 @@ export const addLabelToLabelable = async (
       ? `:warning: There is a backmerge conflict on this PR. Please fix it before it lands on the release mgmt process.`
       : `:warning: There is a conflict on this PR. @${pullRequestAuthor} as you are the author, please fix it.`
 
-  const query = `mutation ($label: [String!]! / [ID!]!, $pullRequest: String!) {
+  const query = `mutation ($label: any, $pullRequest: String!) {
     addLabelsToLabelable(input: {labelIds: [$label], labelableId: $pullRequest}) {
       clientMutationId
     }
