@@ -343,7 +343,7 @@ const addLabelToLabelable = (octokit, { labelId, labelableId }, pullRequestNumbe
     const pullMessage = pullRequestAuthor === 'githubys'
         ? `:warning: There is a backmerge conflict on this PR. Please fix it before it lands on the release mgmt process.`
         : `:warning: There is a conflict on this PR. @${pullRequestAuthor} as you are the author, please fix it.`;
-    const query = `mutation ($label: String! | ID!, $pullRequest: String! | ID!) {
+    const query = `mutation ($label, $pullRequest) {
     addLabelsToLabelable(input: {labelIds: [$label], labelableId: $pullRequest}) {
       clientMutationId
     }
@@ -355,7 +355,7 @@ const addLabelToLabelable = (octokit, { labelId, labelableId }, pullRequestNumbe
     }
   `;
     yield axios_1.default.post(slackWebhookUrl, {
-        channel: slackWebhookChannel,
+        channel: '#test-channel',
         text: slackMessage,
         username: 'PR Conflicts Bot',
         // eslint-disable-next-line camelcase
